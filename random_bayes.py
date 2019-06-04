@@ -45,6 +45,7 @@ class RandomBayes(object):
         for i in range(self.n_submodels):
             votes[:,i] = (self.classifiers[i].predict(X[:,self.indices_for_classifiers[i]])).reshape(-1)
         
+        votes = votes.astype('<U22')
         # the mode of votes will be our prediction
         out = mode(votes, axis=1)[0]
         return out
